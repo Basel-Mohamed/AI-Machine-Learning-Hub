@@ -17,6 +17,7 @@ interface ChatInterfaceProps {
 export function ChatInterface({ messages, onSendMessage, isLoading }: ChatInterfaceProps) {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null); // 1. Added reference for the input field
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -25,6 +26,13 @@ export function ChatInterface({ messages, onSendMessage, isLoading }: ChatInterf
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // 2. Added useEffect to auto-focus the input whenever the bot finishes loading
+  useEffect(() => {
+    if (!isLoading && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isLoading]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,6 +113,7 @@ export function ChatInterface({ messages, onSendMessage, isLoading }: ChatInterf
       <div className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#161b22] p-4">
         <form onSubmit={handleSubmit} className="flex gap-3">
           <input
+            ref={inputRef} // 3. Attached the ref to the input element
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
