@@ -15,8 +15,8 @@ interface Message {
 }
 
 const API_BASE_URLS = {
-  'oil-sales': 'https://oil-sales-regression-model.vercel.app',
-  'churn': 'https://churn-classification-ensemble.vercel.app'
+  'oil-sales': 'https://oil-sales-regression-model-507324327781.europe-west1.run.app',
+  'churn': 'https://churn-classification-ensemble-507324327781.europe-west1.run.app'
 };
 
 export default function App() {
