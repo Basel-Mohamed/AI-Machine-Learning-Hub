@@ -15,8 +15,8 @@ interface Message {
 }
 
 const API_BASE_URLS = {
-  'oil-sales': 'https://oil-sales-regression-model-507324327781.europe-west1.run.app',
-  'churn': 'https://churn-classification-ensemble-507324327781.europe-west1.run.app'
+  'oil-sales': import.meta.env.VITE_OIL_API_URL || 'https://oil-sales-regression-model-507324327781.europe-west1.run.app',
+  'churn': import.meta.env.VITE_CHURN_API_URL || 'https://churn-classification-ensemble-507324327781.europe-west1.run.app'
 };
 
 export default function App() {
